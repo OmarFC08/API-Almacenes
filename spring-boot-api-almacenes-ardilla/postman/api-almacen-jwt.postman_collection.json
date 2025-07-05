@@ -1,0 +1,154 @@
+{
+    "info": {
+        "_postman_id": "1f9ef44b-3ad4-4be3-bf1d-collection-id",
+        "name": "API Almac\u00e9n JWT",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Registrar Usuario",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"usuario\": \"admin\",\n    \"contrasena\": \"1234\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/auth/register",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "auth",
+                        "register"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Login Usuario",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"usuario\": \"admin\",\n    \"contrasena\": \"1234\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/auth/login",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "auth",
+                        "login"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Obtener Productos",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/productos",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "productos"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Crear Producto",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"nombre\": \"Laptop\",\n    \"precio\": 950.0,\n    \"stock\": 10,\n    \"tipoProducto\": {\n        \"id\": 1\n    }\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/productos",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "productos"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Crear Venta",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"idUsuario\": 1,\n    \"formaPago\": \"EFECTIVO\",\n    \"detalles\": [\n        {\n            \"idProducto\": 1,\n            \"cantidad\": 2,\n            \"precioUnitario\": 950.0\n        },\n        {\n            \"idProducto\": 2,\n            \"cantidad\": 1,\n            \"precioUnitario\": 150.0\n        }\n    ]\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/ventas",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "ventas"
+                    ]
+                }
+            }
+        }
+    ]
+}

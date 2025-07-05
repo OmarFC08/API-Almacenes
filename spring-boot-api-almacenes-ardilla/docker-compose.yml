@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-xe:11.2.0.2
+    container_name: oracle-11g
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: omar080596
+      APP_USER: system
+      APP_USER_PASSWORD: omar080596
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+  spring-api:
+    image: omarfc/spring-boot-api-almacenes-ardilla:1.0
+    container_name: spring-boot-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - oracle-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/XE
+      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_PASSWORD: omar080596
+
+volumes:
+  oracle-data:
